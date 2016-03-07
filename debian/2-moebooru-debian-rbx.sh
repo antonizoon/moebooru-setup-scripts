@@ -11,6 +11,20 @@ db_password="imouto"    # change this before using the script!
 
 workdir="/var/www/moebooru"   # in production, www-data must control the files
 
+# install rbenv to get rubinius (one method)
+function rbenv_install() {
+    cd ~
+    git clone git://github.com/sstephenson/rbenv.git .rbenv
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+    echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+    git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+    source ~/.bash_profile
+    
+    # set up rubinius
+    rbenv install rbx-3.16
+    rbenv global rbx-3.16
+}
+
 # install rvm: https://www.digitalocean.com/community/tutorials/how-to-install-ruby-on-rails-on-ubuntu-14-04-using-rvm
 function rvm_install() {
     # get rvm gpg signing key
